@@ -14,66 +14,39 @@
 
 package com.googlesource.gerrit.plugins.its.jira;
 
-import java.net.URL;
-import java.rmi.RemoteException;
+import com.atlassian.jira.rest.client.api.JiraRestClient;
+import com.atlassian.jira.rest.client.api.JiraRestClientFactory;
+import com.atlassian.jira.rest.client.api.domain.Issue;
+import com.atlassian.jira.rest.client.api.domain.ServerInfo;
+import com.atlassian.jira.rest.client.internal.async.AsynchronousJiraRestClientFactory;
 
-import com.atlassian.jira.rpc.soap.client.JiraSoapService;
-import com.atlassian.jira.rpc.soap.client.JiraSoapServiceServiceLocator;
-import com.atlassian.jira.rpc.soap.client.RemoteComment;
-import com.atlassian.jira.rpc.soap.client.RemoteFieldValue;
-import com.atlassian.jira.rpc.soap.client.RemoteIssue;
-import com.atlassian.jira.rpc.soap.client.RemoteNamedObject;
-import com.atlassian.jira.rpc.soap.client.RemoteServerInfo;
+import java.io.IOException;
+import java.net.URL;
 
 public class JiraClient {
 
-  private final JiraSoapService service;
+  private JiraRestClient restClient;
 
-  public JiraClient(final String baseUrl) throws RemoteException {
-    this(baseUrl, "/rpc/soap/jirasoapservice-v2");
-  }
-
-  public JiraClient(final String baseUrl, final String rpcPath) throws RemoteException {
+  public JiraClient(final String baseUrl, final String username, final String password) throws Exception {
     try {
-      JiraSoapServiceServiceLocator locator = new JiraSoapServiceServiceLocator();
-      service = locator.getJirasoapserviceV2(new URL(baseUrl+rpcPath));
+      URL url =  new URL(baseUrl);
+      JiraRestClientFactory factory = new AsynchronousJiraRestClientFactory();
+      restClient = factory.createWithBasicHttpAuthentication(url.toURI(), username, password);
+    } catch (Exception e) {
+      throw new Exception("Exception during JiraRestClient contruction", e);
     }
-    catch (Exception e) {
-        throw new RemoteException("ServiceException during SOAPClient contruction", e);
-    }
   }
 
-  public JiraSession login(final String username, final String password) throws RemoteException {
-    String token = service.login(username, password);
-    return new JiraSession(username, token);
+  public void logout() throws IOException {
+    restClient.close();
   }
 
-  public void logout(JiraSession token) throws RemoteException {
-    service.logout(getToken(token));
+  public Issue getIssue(String issueKey) {
+    return restClient.getIssueClient().getIssue(issueKey).claim();
   }
 
-  public RemoteIssue getIssue(JiraSession token, String issueKey) throws RemoteException {
-    return service.getIssue(getToken(token), issueKey);
-  }
-
-  public RemoteNamedObject[] getAvailableActions(JiraSession token, String issueKey) throws RemoteException {
-    return service.getAvailableActions(getToken(token), issueKey);
-  }
-
-  public RemoteIssue performAction(JiraSession token, String issueKey, String actionId, RemoteFieldValue... params) throws RemoteException {
-    return service.progressWorkflowAction(getToken(token), issueKey, actionId, params);
-  }
-
-  public void addComment(JiraSession token, String issueKey, RemoteComment comment) throws RemoteException {
-    service.addComment(getToken(token), issueKey, comment);
-  }
-
-  public RemoteServerInfo getServerInfo(JiraSession token) throws RemoteException {
-    return service.getServerInfo(getToken(token));
-  }
-
-  private String getToken(JiraSession token) {
-    return token == null ? null : token.getToken();
+  public ServerInfo getServerInfo() {
+    return restClient.getMetadataClient().getServerInfo().claim();
   }
 
 }

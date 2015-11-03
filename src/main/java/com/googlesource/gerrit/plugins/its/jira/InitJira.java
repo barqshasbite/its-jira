@@ -120,13 +120,11 @@ class InitJira extends InitIts {
   private boolean isJiraConnectSuccessful() {
     ui.message("Checking Jira connectivity ... ");
     try {
-      JiraClient jiraClient = new JiraClient(jiraUrl);
-      JiraSession jiraToken =
-          jiraClient.login(jiraUsername, jiraPassword);
-      jiraClient.logout(jiraToken);
+      JiraClient jiraClient = new JiraClient(jiraUrl, jiraUsername, jiraPassword);
+      jiraClient.logout();
       ui.message("[OK]\n");
       return true;
-    } catch (RemoteException e) {
+    } catch (Exception e) {
       ui.message("*FAILED* (%s)\n", e.toString());
       return false;
     }

@@ -1,17 +1,3 @@
-def genwsdl2java(
-    name,
-    srcs,
-    out):
-  genrule(
-    name = name,
-    srcs = srcs,
-      cmd = '$(exe :wsdl2java) -o $TMP ' +
-      '-p com.atlassian.jira.rpc.soap.client $SRCS && ' +
-      'cd $TMP && ' +
-      'zip -qr $OUT .',
-    out = out,
-  )
-
 gerrit_plugin(
   name = 'its-jira',
   srcs = glob(['src/main/java/**/*.java']),
@@ -25,31 +11,29 @@ gerrit_plugin(
     'Implementation-Vendor: GerritForge LLP',
   ],
   deps = [
-    ':wsdl2java_lib',
     '//plugins/its-base:its-base__plugin',
-    '//plugins/its-jira/lib/axis:axis',
-    '//plugins/its-jira/lib:xmlrpc-client',
-    '//plugins/its-jira/lib:wsdl4j',
-  ],
-)
-
-java_library(
-  name = 'wsdl2java_lib',
-  srcs = [':wsdl2java_src'],
-  deps = ['//plugins/its-jira/lib/axis:axis'],
-)
-
-genwsdl2java(
-  name = 'wsdl2java_src',
-  srcs = ['src/main/wsdl/jirasoapservice-v2.wsdl'],
-  out = 'wsdl2java.src.zip',
-)
-
-java_binary(
-  name = 'wsdl2java',
-  main_class = 'org.apache.axis.wsdl.WSDL2Java',
-  deps = [
-    '//plugins/its-jira/lib/axis:axis',
-    '//plugins/its-jira/lib/axis:wsdl4j',
+    '//plugins/its-jira/lib/jira:jira-rest-java-client-api',
+    '//plugins/its-jira/lib/jira:jira-rest-java-client-core',
+    '//plugins/its-jira/lib/jira:atlassian-util-concurrent',
+    '//plugins/its-jira/lib/jira:sal-api',
+    '//plugins/its-jira/lib/jira:atlassian-event',
+    '//plugins/its-jira/lib/jira:atlassian-httpclient-api',
+    '//plugins/its-jira/lib/jira:atlassian-httpclient-spi',
+    '//plugins/its-jira/lib/jira:atlassian-httpclient-apache-httpcomponents',
+    '//plugins/its-jira/lib/jira:spring-beans',
+    '//plugins/its-jira/lib/jira:httpclient',
+    '//plugins/its-jira/lib/jira:httpclient-cache',
+    '//plugins/its-jira/lib/jira:httpasyncclient',
+    '//plugins/its-jira/lib/jira:httpasyncclient-cache',
+    '//plugins/its-jira/lib/jira:httpcore-nio',
+    '//plugins/its-jira/lib/jira:javax.ws.rs-api',
+    '//plugins/its-jira/lib/jira:jersey-client',
+    '//plugins/its-jira/lib/jira:jersey-common',
+    '//plugins/its-jira/lib/jira:jersey-guava',
+    '//plugins/its-jira/lib/jira:hk2-api',
+    '//plugins/its-jira/lib/jira:hk2-utils',
+    '//plugins/its-jira/lib/jira:hk2-locator',
+    '//plugins/its-jira/lib/jira:javax.inject',
+    '//plugins/its-jira/lib/jira:jettison',
   ],
 )

@@ -1,0 +1,175 @@
+include_defs('//lib/maven.defs')
+
+maven_jar(
+  name = 'jira-rest-java-client-api',
+  id = 'com.atlassian.jira:jira-rest-java-client-api:3.0.0',
+  sha1 = 'dd2dfa40cfbb43fe0e450d359d639c1d9a1fa28e',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'jira-rest-java-client-core',
+  id = 'com.atlassian.jira:jira-rest-java-client-core:3.0.0',
+  sha1 = '6dd9fcb1b6cbf2e266270bd3ab10a10f8c8a5464',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'atlassian-util-concurrent',
+  id = 'com.atlassian.util.concurrent:atlassian-util-concurrent:2.6.3',
+  sha1 = 'e42f7c31d7f5d898751b3a44d917b9ef88459e01',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'sal-api',
+  id = 'com.atlassian.sal:sal-api:2.6.0',
+  sha1 = '1b7fbdd36f087429cbac37138623b5feb621f088',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'atlassian-event',
+  id = 'com.atlassian.event:atlassian-event:3.0.0',
+  sha1 = 'c7e5b4c24078ddf3a235d9db626cfed27ef691ab',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'atlassian-httpclient-api',
+  id = 'com.atlassian.httpclient:atlassian-httpclient-api:0.14.0',
+  sha1 = '86a4444755d9682aa586a6d40495aa668f3b7a8d',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'atlassian-httpclient-spi',
+  id = 'com.atlassian.httpclient:atlassian-httpclient-spi:0.14.0',
+  sha1 = '6f1d0346e3bc81fd2ffd5492a0cef48b30a99462',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'atlassian-httpclient-apache-httpcomponents',
+  id = 'com.atlassian.httpclient:atlassian-httpclient-apache-httpcomponents:0.14.0',
+  sha1 = 'f9df93f4d487223b610e5cc538cd12d44213ddbc',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'spring-beans',
+  id = 'org.springframework:spring-beans:4.2.2.RELEASE',
+  sha1 = 'c0384c9b077c02ce34234ba258a5161c30ac6895',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'httpclient',
+  id = 'org.apache.httpcomponents:httpclient:4.2.1-atlassian-2',
+  sha1 = '1bf4e0a674c553b318698792c2ddbd787150ac95',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'httpclient-cache',
+  id = 'org.apache.httpcomponents:httpclient-cache:4.2.1-atlassian-2',
+  sha1 = 'be0436c55251a66eef78b92404c844a3d4c9f16c',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'httpasyncclient',
+  id = 'org.apache.httpcomponents:httpasyncclient:4.0-beta3-atlassian-1',
+  sha1 = '41e5d5cf3956de717f970231f6cfb58f2c5db755',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'httpasyncclient-cache',
+  id = 'org.apache.httpcomponents:httpasyncclient-cache:4.0-beta3-atlassian-1',
+  sha1 = '58a6212aa98bec35d47a1916d4971b10b8200b65',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'httpcore-nio',
+  id = 'org.apache.httpcomponents:httpcore-nio:4.2.2-atlassian1',
+  sha1 = '62604ca7e688b413b74969a744fe9ce291096186',
+  license = 'Apache2.0',
+  repository = MAVEN_CENTRAL_ATLAS,
+)
+
+maven_jar(
+  name = 'javax.ws.rs-api',
+  id = 'javax.ws.rs:javax.ws.rs-api:2.0',
+  sha1 = '61f0983eb190954ccdede31e786a9e0bd9767c4a',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'jersey-client',
+  id = 'com.sun.jersey:jersey-client:1.19',
+  sha1 = '6836ee36dba2b3ac1d0ff4733129fba8aba7f963',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'jersey-common',
+  id = 'org.glassfish.jersey.core:jersey-common:2.22.1',
+  sha1 = 'b5811d8385766f35d10d204952f3d5b57ee2fb60',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'hk2-api',
+  id = 'org.glassfish.hk2:hk2-api:2.4.0-b32',
+  sha1 = 'eb67493e3bb7f5b62067304171d9ed4f88002565',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'hk2-utils',
+  id = 'org.glassfish.hk2:hk2-utils:2.4.0-b32',
+  sha1 = '7fc696c1a6c872e22c47a17dac36d52d6118095a',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'hk2-locator',
+  id = 'org.glassfish.hk2:hk2-locator:2.4.0-b32',
+  sha1 = 'da24421c3fbafb8ed40e139e10a0a08a15731ddb',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'jersey-guava',
+  id = 'org.glassfish.jersey.bundles.repackaged:jersey-guava:2.22.1',
+  sha1 = '2b79eb893818539370899c24893fac9b2fdc4dbd',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'javax.inject',
+  id = 'javax.inject:javax.inject:1',
+  sha1 = '6975da39a7040257bd51d21a231b76c915872d38',
+  license = 'Apache2.0',
+)
+
+maven_jar(
+  name = 'jettison',
+  id = 'org.codehaus.jettison:jettison:1.3.7',
+  sha1 = '7d36a59a0577f11b12088b9e215d6860345b9e1d',
+  license = 'Apache2.0',
+)
